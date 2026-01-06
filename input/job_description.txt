@@ -1,0 +1,24 @@
+Computer Vision Engineer
+
+We are seeking a talented Computer Vision Engineer to join our team and develop cutting-edge visual AI solutions.
+
+Responsibilities:
+- Design and implement computer vision algorithms for object detection, tracking, and recognition
+- Develop deep learning models using PyTorch and TensorFlow
+- Optimize models for real-time performance on edge devices
+- Collaborate with cross-functional teams to integrate CV solutions into products
+- Conduct research on state-of-the-art computer vision techniques
+
+Required Qualifications:
+- MS or PhD in Computer Science, Electrical Engineering, or related field
+- 3+ years of experience in computer vision and deep learning
+- Strong programming skills in Python and C++
+- Experience with OpenCV, PyTorch, TensorFlow
+- Knowledge of classical CV algorithms and modern deep learning architectures
+- Experience with image processing, feature extraction, and 3D vision
+
+Preferred Skills:
+- Experience with medical imaging or autonomous systems
+- Knowledge of CUDA and GPU optimization
+- Publications in top-tier CV conferences (CVPR, ICCV, ECCV)
+- Experience with MLOps and model deployment

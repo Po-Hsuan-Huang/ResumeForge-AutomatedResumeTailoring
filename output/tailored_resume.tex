@@ -1,0 +1,81 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+% Page layout
+\geometry{margin=0.75in}
+\pagestyle{empty}
+
+% Colors
+\definecolor{darkblue}{RGB}{0,51,102}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    urlcolor=darkblue
+}
+
+% Section formatting
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{darkblue}}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{12pt}{6pt}
+
+\begin{document}
+
+% Header
+\begin{center}
+    {\Huge\bfseries Po-Hsuan Huang}\\[4pt]
+    \href{mailto:your.email@example.com}{your.email@example.com} $|$ 
+    \href{https://linkedin.com/in/yourprofile}{LinkedIn} $|$ 
+    \href{https://github.com/yourprofile}{GitHub}
+\end{center}
+
+\vspace{8pt}
+
+% Profile Summary
+\section*{Profile Summary}
+Highly skilled Computer Vision Engineer with an MS in Computer Science and over 3 years of experience in developing and deploying deep learning models. Demonstrated proficiency in Python, C++, OpenCV, PyTorch, and TensorFlow, with a solid understanding of classical CV algorithms and modern architectures. Published researcher with experience in feature extraction, 3D vision, and real-time model optimization.
+
+\vspace{6pt}
+
+% Professional Experience
+\section*{Professional Experience}
+
+\begin{itemize}[leftmargin=*, itemsep=4pt]
+
+    \item Developed and deployed machine learning models for production systems
+
+    \item Optimized algorithms for performance and scalability
+
+    \item Conducted research and implemented state-of-the-art techniques
+
+    \item Implemented deep learning models using PyTorch and TensorFlow
+
+    \item Published research findings in peer-reviewed conferences
+
+    \item Collaborated with cross-functional teams to deliver AI-powered solutions
+
+    \item Built end-to-end data pipelines for large-scale data processing
+
+\end{itemize}
+
+\vspace{6pt}
+
+% Technical Skills
+\section*{Technical Skills}
+Python, C++, TensorFlow, PyTorch, OpenCV, Computer Vision, Deep Learning, 3D Vision, Algorithm Optimization, Research, Cross-Functional Collaboration, Data Processing
+
+\vspace{6pt}
+
+% Education (Static - customize as needed)
+\section*{Education}
+
+\textbf{Your University Name} \hfill City, State\\
+\textit{Degree in Your Field} \hfill Graduation Year
+
+\end{document}
