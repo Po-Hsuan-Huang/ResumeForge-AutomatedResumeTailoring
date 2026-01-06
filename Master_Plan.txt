@@ -1,0 +1,78 @@
+# PROJECT: ResumeForge - Automated Resume Tailoring Pipeline
+
+## 1. Context & Objective
+I am building a local Python automation tool called "ResumeForge". 
+My goal is to automate the specific customization of my resume for different job applications.
+I have a library of existing resumes (LaTeX files) organized by role (e.g., Data Scientist vs. Backend Engineer).
+
+## 2. The Core Task
+Write a complete Python script (`main.py`) that acts as a pipeline:
+1. INPUT: Reads a Job Description (JD) text file.
+2. CLASSIFY: Decides which "Role Folder" in my library is most relevant to the JD.
+3. EXTRACT: Scrapes bullet points and content from the .tex files in that folder.
+4. SYNTHESIZE: Uses the OpenAI API to select the best bullet points and rewrite the summary to match the JD keywords.
+5. COMPILE: Injects this tailored content into a master LaTeX template and compiles a PDF.
+
+## 3. Directory Structure
+Please design the code to work with this file structure:
+
+ResumeForge/
+├── input/
+│   └── job_description.txt       # I will paste the JD here manually
+├── library/                      # My Source of Truth
+│   ├── software_engineer/        # Role A
+│   │   ├── resume_v1.tex
+│   │   └── projects.tex
+│   ├── product_manager/          # Role B
+│   │   └── resume_pm.tex
+├── templates/
+│   └── master_template.tex       # A clean LaTeX shell with Jinja2-style placeholders
+├── output/                       # Where final PDFs go
+└── main.py
+
+## 4. Implementation Requirements
+
+### Module A: The Classifier
+- Function: `select_role_folder(jd_text, list_of_folders)`
+- Logic: Send the JD text and the folder names to the LLM. Ask it to return the single folder name that best matches the job.
+
+### Module B: The Content Parser
+- Function: `parse_tex_files(folder_path)`
+- Logic: 
+  - Iterate through all `.tex` files in the chosen folder.
+  - Use Regex or simple string parsing to extract text inside `\item` tags (for bullet points) and generic text blocks.
+  - Return a raw list/string of "Available Experience".
+
+### Module C: The Synthesizer (OpenAI API)
+- Function: `generate_tailored_content(jd_text, available_experience)`
+- System Prompt: "You are an expert resume writer. Use the available experience to tailor a resume for the provided Job Description."
+- Task: 
+  1. Write a 3-sentence Profile Summary tailored to the JD.
+  2. Select the top 5-7 bullet points from the history that match the JD keywords.
+  3. Extract a list of Technical Skills found in the history that match the JD.
+- Output Format: Return a JSON object strictly:
+  {
+    "summary": "...",
+    "experience_items": ["...", "..."],
+    "skills": "..."
+  }
+
+### Module D: The PDF Compiler
+- Function: `render_pdf(json_data, template_path)`
+- Logic:
+  - Load `master_template.tex`.
+  - Replace placeholders (e.g., `VAR_SUMMARY`, `VAR_ITEMS`) with the data from Module C.
+  - Write `temp_resume.tex` to the output folder.
+  - Use `subprocess` to run `pdflatex` on the file.
+  - Clean up auxiliary files (.log, .aux).
+
+## 5. Technical Constraints
+- Use `openai` library (latest version).
+- Use `pydantic` if necessary for structured data extraction.
+- Use `jinja2` for the LaTeX templating (it is cleaner than string replacement).
+- Handle errors gracefully (e.g., if pdflatex is not installed).
+- Mock the API key setup: `client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))`.
+
+## 6. Deliverables
+1. The full `main.py` code.
+2. A sample `master_template.tex` file showing where the Jinja2 variables (like `{{ summary }}`) should go.
